@@ -9,7 +9,7 @@ int     	main(int argc, char **argv)
 
 	if (argc == 1)
 	{
-		write(2, "fillit: missing file operand", 28);
+		write(2, "fillit: missing file operand.", 29);
 			return (1);
 	}
 	else if (argc > 2)
