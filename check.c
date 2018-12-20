@@ -1,5 +1,4 @@
 #include "fillit.h"
-#include "get_next_line.h"
 
 int     check_format(const int fd)
 {
