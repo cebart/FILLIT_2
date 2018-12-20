@@ -16,7 +16,7 @@ int     check_format(const int fd)
     while (get_next_line(fd, &line) == 1)
     {
         i = 0;
-        if (ft_strlen(line))
+        if (ft_strlen(line))                                /* ligne "pleine" */
         {
             bool_line = 1;
             cpt++;
@@ -35,7 +35,7 @@ int     check_format(const int fd)
                 i++;
             }
         }
-        else
+        else                                                    /* ligne vide = saut de ligne */
         {
             if (!bool_line)
                 return (0);
