@@ -53,7 +53,7 @@ int     check_format(const int fd)
 
 int     check_file(const int fd)
 {
-    if (check_format(fd))
+    if (check_format(fd))                                       /*  pour debug */
         ft_putstr("OK1");
     else
         ft_putstr("KO1");
