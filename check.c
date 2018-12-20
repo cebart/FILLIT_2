@@ -7,10 +7,12 @@ int     check_format(const int fd)
     int     cpt;                                /* compteur pour verif si 4 ligne avant ligne vide ( ni plus ni moins ) */
     char    *line;
     int     i;
+    int     j;                                     /* test si nb de # > 4 */
 
     bool_line = 0;
     cpt = 0;
     line = ft_strnew(BUFF_SIZE);
+    j = 0;
     while (get_next_line(fd, &line) == 1)
     {
         i = 0;
@@ -26,6 +28,10 @@ int     check_format(const int fd)
             {
                 if (line[i] != '.' && line[i] != '#')
                     return (0);
+                if (line[i] == '#')
+                    j++;
+                if (j > 4)
+                    return (0);
                 i++;
             }
         }
@@ -34,6 +40,7 @@ int     check_format(const int fd)
             if (!bool_line)
                 return (0);
             bool_line = 0;
+            j = 0;
             if (cpt != 4)
                 return (0);
             cpt = 0;
