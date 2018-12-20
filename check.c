@@ -7,7 +7,7 @@ int     check_format(const int fd)
     int     cpt;                                /* compteur pour verif si 4 ligne avant ligne vide ( ni plus ni moins ) */
     char    *line;
     int     i;
-    int     j;                                     /* test si nb de # > 4 */
+    int     j;                                     /* test si nb de # > 4 ou < 4 */
 
     bool_line = 0;
     cpt = 0;
@@ -40,6 +40,8 @@ int     check_format(const int fd)
             if (!bool_line)
                 return (0);
             bool_line = 0;
+            if ( j != 4)
+                return (0);
             j = 0;
             if (cpt != 4)
                 return (0);
