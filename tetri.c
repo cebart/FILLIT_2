@@ -37,7 +37,7 @@ char        **ft_2tabnew(int nbl, int nbc)
 	return (tab);
 }
 
-char    **test_and_format(char **tetri)                     /* en cours */
+char    **test_tetri(char **tetri)                     /* en cours */
 {
     int     i;
     int     j;
@@ -81,6 +81,28 @@ char    **test_and_format(char **tetri)                     /* en cours */
     return (tetri);
 }
 
+char    **format_tetri(char **tetri, int c)
+{
+    int     i;
+    int     j;
+    char    bloc;
+
+    bloc = 'A';
+    i = 0;
+    while ( i < 4)
+    {
+        j = 0;
+        while (j < 4)
+        {
+            if (tetri[i][j] == '#')
+                tetri[i][j] = bloc + c;
+            j++;
+        }
+        i++;
+    }
+    return (tetri);
+}
+
 int     get_tetri(const int fd)
 {
     char    ***tetris;                                                   /* tetris[nb_tetris][largeur][longueur] / nb_tetris a recup*/
@@ -107,8 +129,14 @@ int     get_tetri(const int fd)
     i = 0;
 	while (tetris[i] != NULL)
 	{
-            if(!(tetris[i] = test_and_format(tetris[i])))
+            if(!(tetris[i] = test_tetri(tetris[i])))
                 return (0);
+            i++;
+	}
+	i = 0;
+    while (tetris[i] != NULL)
+	{
+            tetris[i] = format_tetri(tetris[i], i);
             i++;
 	}
     i = 0;                              /* debug */
