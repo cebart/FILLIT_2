@@ -47,7 +47,7 @@ int     check_file(const int fd)
             cpt = 0;
         }
     }
-    if ( blocs != 4)
+    if ( blocs != 4)                                    /* test si le dernier tetri a bien 4 blocs */
                 return (0);
     if (!bool_line)                                    /* test si saut de ligne juste avant la fin de fichier */
         return (0);
