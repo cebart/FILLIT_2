@@ -41,7 +41,6 @@ char    **test_and_format(char **tetri)                     /* en cours */
 {
     int     i;
     int     j;
-    char    l;
     int     bloc;
 
     bloc = 0;
@@ -69,7 +68,7 @@ char    **test_and_format(char **tetri)                     /* en cours */
                     bloc++;
                 else if (tetri[i][j - 1] == '#')
                     bloc++;
-                if (i == 0 && j == 0 || i == 0 && j == 3 || i == 3 && j == 3 || i == 3 && j == 0)
+                if ((i == 0 && j == 0) || (i == 0 && j == 3) || (i == 3 && j == 3) || (i == 3 && j == 0))
                     bloc--;
                 if (bloc < 2)
                     return (0);
