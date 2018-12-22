@@ -37,7 +37,7 @@ char        **ft_2tabnew(int nbl, int nbc)
 	return (tab);
 }
 
-char    **test_tetri(char **tetri)                     /* en cours */
+char    **test_tetri(char **tetri)                     /* en cours  /!\ PB pour bloc 1;1 2;2 1;2 2;1 /!\*/
 {
     int     i;
     int     j;
