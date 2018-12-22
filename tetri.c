@@ -53,12 +53,12 @@ int     get_tetri(const int fd)
         j = 0;
         while (j < 4)
         {
-            get_next_line(fd, &line) == 1;
+            get_next_line(fd, &line);
             tetris[i][j] = line;
             j++;
         }
-        get_next_line(fd, &line) == 1;
         i++;
+        get_next_line(fd, &line);
     }
     i = 0;                              /* debug */
 	while (tetris[i] != NULL)
@@ -66,10 +66,11 @@ int     get_tetri(const int fd)
         j = 0;
         while (j < 4)
         {
-            ft_putendl(tetris[i][j]);
+            ft_putstr(tetris[i][j]);
+            ft_putchar('\n');
             j++;
         }
-        ft_putchar('\n');
+
         i++;
 	}                                           /* fin debug */
     return (1);
