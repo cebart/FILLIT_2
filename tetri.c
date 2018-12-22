@@ -70,8 +70,6 @@ char    **test_tetri(char **tetri)                     /* en cours */
                     bloc++;
                 if ((i == 0 && j == 0) || (i == 0 && j == 3) || (i == 3 && j == 3) || (i == 3 && j == 0))
                     bloc--;
-                if ((i == 1 && j == 1) || (i == 2 && j == 2) || (i == 2 && j == 1) || (i == 1 && j == 2))           /* /!\ !OK pour ##../n..## /!\ */
-                    bloc++;
                 if (bloc < 2)
                     return (0);
             }
