@@ -46,9 +46,9 @@ int     check_file(const int fd)
                 return (0);
             cpt = 0;
         }
-         if ( blocs != 4)
-                return (0);
     }
+    if ( blocs != 4)
+                return (0);
     if (!bool_line)                                    /* test si saut de ligne juste avant la fin de fichier */
         return (0);
     return (1);
