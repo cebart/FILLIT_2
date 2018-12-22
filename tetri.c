@@ -37,6 +37,50 @@ char        **ft_2tabnew(int nbl, int nbc)
 	return (tab);
 }
 
+char    **test_and_format(char **tetri)                     /* en cours */
+{
+    int     i;
+    int     j;
+    char    l;
+    int     bloc;
+
+    bloc = 0;
+    i = 0;
+    while ( i < 4)
+    {
+        j = 0;
+        while (j < 4)
+        {
+            ft_putendl("test");
+            if (tetri[i][j] == '#')
+            {
+                if (!(tetri[i-1][j]))
+                    bloc++;
+                else if (tetri[i-1][j] == '#')
+                    bloc++;
+                if (!(tetri[i+1][j]))
+                    bloc++;
+                else if (tetri[i+1][j] == '#')
+                    bloc++;
+                if (!(tetri[i][j + 1]))
+                    bloc++;
+                else if (tetri[i][j + 1] == '#')
+                    bloc++;
+                if (!(tetri[i][j - 1]))
+                    bloc++;
+                else if (tetri[i][j - 1] == '#')
+                    bloc++;
+                if (bloc < 2)
+                    return (0);
+            }
+            bloc = 0;
+            j++;
+        }
+        i++;
+    }
+    return (tetri);
+}
+
 int     get_tetri(const int fd)
 {
     char    ***tetris;                                                   /* tetris[nb_tetris][largeur][longueur] / nb_tetris a recup*/
@@ -60,17 +104,23 @@ int     get_tetri(const int fd)
         i++;
         get_next_line(fd, &line);
     }
+    i = 0;
+	while (tetris[i] != NULL)
+	{
+            if(!(tetris[i] = test_and_format(tetris[i])))
+                return (0);
+            i++;
+	}
     i = 0;                              /* debug */
 	while (tetris[i] != NULL)
 	{
         j = 0;
         while (j < 4)
         {
-            ft_putstr(tetris[i][j]);
-            ft_putchar('\n');
+            ft_putendl(tetris[i][j]);
             j++;
         }
-
+        ft_putchar('\n');
         i++;
 	}                                           /* fin debug */
     return (1);

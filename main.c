@@ -17,7 +17,14 @@ int     	main(int argc, char **argv)
 			 return (1);
 	}
 	fd = open(argv[1], O_RDONLY);
-	check_file(fd);
-	close(fd);
+	if (check_file(fd))
+    {
+        close(fd);
+        fd = open(argv[1], O_RDONLY);
+        if(!(get_tetri(fd)))                            /* if pour debug */
+            ft_putendl("KO");
+    }
+    else
+        ft_putendl("KO check");
 	return (0);
 }

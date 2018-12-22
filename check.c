@@ -1,12 +1,12 @@
 #include "fillit.h"
 
-int     check_format(const int fd)
+int     check_file(const int fd)
 {
     int     bool_line;                          /* 1 pour line non vide sinon 0 -> test si 2 saut de ligne */
     int     cpt;                                /* compteur pour verif si 4 ligne avant ligne vide ( ni plus ni moins ) */
     char    *line;
     int     i;
-    int     blocs;                                     /* test si nb de # > 4 ou < 4 */
+    int     blocs;                                     /* test si nb de # == 4 */
 
     bool_line = 0;
     cpt = 0;
@@ -49,15 +49,5 @@ int     check_format(const int fd)
     }
     if (!bool_line)                                    /* test si saut de ligne juste avant la fin de fichier */
         return (0);
-    return (1);
-}
-
-int     check_file(const int fd)
-{
-    if (check_format(fd))                                       /*  pour debug */
-        ft_putstr("OK1");
-    else
-        ft_putstr("KO1");
-
     return (1);
 }
