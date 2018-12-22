@@ -54,19 +54,19 @@ char    **test_and_format(char **tetri)                     /* en cours */
             ft_putendl("test");
             if (tetri[i][j] == '#')
             {
-                if (!(tetri[i-1][j]))
+                if (i == 0)
                     bloc++;
                 else if (tetri[i-1][j] == '#')
                     bloc++;
-                if (!(tetri[i+1][j]))
+                if (i == 3)
                     bloc++;
                 else if (tetri[i+1][j] == '#')
                     bloc++;
-                if (!(tetri[i][j + 1]))
+                if (j == 3)
                     bloc++;
                 else if (tetri[i][j + 1] == '#')
                     bloc++;
-                if (!(tetri[i][j - 1]))
+                if (j == 0)
                     bloc++;
                 else if (tetri[i][j - 1] == '#')
                     bloc++;
