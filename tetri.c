@@ -37,14 +37,16 @@ char        **ft_2tabnew(int nbl, int nbc)
 	return (tab);
 }
 
-char    **test_tetri(char **tetri)                     /* en cours  /!\ PB pour bloc 1;1 2;2 1;2 2;1 /!\*/
+char    **test_tetri(char **tetri)                     /* en cours  /!\ PB si le tetri se lit de droite a gauche ; ..## \n .##. /!\*/
 {
     int     i;
     int     j;
     int     bloc;
+    int     cpt;
 
     bloc = 0;
     i = 0;
+    cpt = 0;
     while ( i < 4)
     {
         j = 0;
@@ -52,27 +54,17 @@ char    **test_tetri(char **tetri)                     /* en cours  /!\ PB pour 
         {
             if (tetri[i][j] == '#')
             {
-                if (i == 0)
+                cpt++;
+                if (i != 0 && tetri[i-1][j] != '.')
                     bloc++;
-                else if (tetri[i-1][j] != '.')
+                if (i != 3 && tetri[i+1][j] != '.')
                     bloc++;
-                if (i == 3)
+                if (j != 3 && tetri[i][j + 1] != '.')
                     bloc++;
-                else if (tetri[i+1][j] != '.')
+                if (j != 0 && tetri[i][j - 1] != '.')
                     bloc++;
-                if (j == 3)
-                    bloc++;
-                else if (tetri[i][j + 1] != '.')
-                    bloc++;
-                if (j == 0)
-                    bloc++;
-                else if (tetri[i][j - 1] != '.')
-                    bloc++;
-                if ((i == 0 && j == 0) || (i == 0 && j == 3) || (i == 3 && j == 3) || (i == 3 && j == 0))
-                    bloc--;
-                if ((i == 1 && j == 1) || (i == 2 && j == 2) || (i == 2 && j == 1) || (i == 1 && j == 2))           /* /!\ !OK pour ##../n..## /!\ */
-                    bloc++;
-                if (bloc < 2)
+                ft_putnbr(cpt);
+                if (((cpt == 1 || cpt == 4) && bloc == 0) || ((cpt == 2 || cpt == 3) && bloc != 2))
                     return (0);
             }
             bloc = 0;
