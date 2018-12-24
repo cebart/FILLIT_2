@@ -63,7 +63,6 @@ char    **test_tetri(char **tetri)                     /* en cours  /!\ PB si le
                     bloc++;
                 if (j != 0 && tetri[i][j - 1] != '.')
                     bloc++;
-                ft_putnbr(cpt);
                 if (((cpt == 1 || cpt == 4) && bloc == 0) || ((cpt == 2 || cpt == 3) && bloc != 2))
                     return (0);
             }
