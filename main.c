@@ -5,7 +5,9 @@
 int     	main(int argc, char **argv)
 {
 	int     fd;
+    int     nbtetris;
 
+    nbtetris = 1;
 	if (argc == 1)
 	{
 		write(2, "fillit: missing file operand.", 29);
@@ -17,11 +19,11 @@ int     	main(int argc, char **argv)
 			 return (1);
 	}
 	fd = open(argv[1], O_RDONLY);
-	if (check_file(fd))
+	if (check_file(fd, &nbtetris))
     {
         close(fd);
         fd = open(argv[1], O_RDONLY);
-        if(!(get_tetri(fd)))                            /* if pour debug */
+        if(!(get_tetri(fd, (nbtetris) / 5)))                            /* if pour debug */
             ft_putendl("KO");
     }
     else

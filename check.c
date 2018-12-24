@@ -1,6 +1,6 @@
 #include "fillit.h"
 
-int     check_file(const int fd)
+int     check_file(const int fd, int *nbtetris)
 {
     int     bool_line;                          /* 1 pour line non vide sinon 0 -> test si 2 saut de ligne */
     int     cpt;                                /* compteur pour verif si 4 ligne avant ligne vide ( ni plus ni moins ) */
@@ -46,6 +46,7 @@ int     check_file(const int fd)
                 return (0);
             cpt = 0;
         }
+        (*nbtetris)++;
     }
     if ( blocs != 4)                                    /* test si le dernier tetri a bien 4 blocs */
                 return (0);
