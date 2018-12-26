@@ -11,8 +11,9 @@ int     check_file(const int fd, int *nbtetris);
 int     get_tetri(const int fd, int nbtetris);
 char    **ft_2tabnew(int nbl, int nbc);
 char    ***ft_tab2tabnew(int nbtab, int nbl, int nbc);
-char    **test_tetri(char **tetri);
+int     test_tetri(char **tetri);
 char    **format_tetri(char **tetri, int c);
+char    **ft_2tabcpy(char **tab);
 
 
 #endif
