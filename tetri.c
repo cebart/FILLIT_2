@@ -37,7 +37,7 @@ char        **ft_2tabnew(int nbl, int nbc)
 	return (tab);
 }
 
-char    **test_tetri(char **tetri)                     /* en cours  /!\ PB si le tetri se lit de droite a gauche ; ..## \n .##. /!\*/
+int test_tetri(char **tetri)                     /* en cours  /!\ PB si le tetri se lit de droite a gauche ; ..## \n .##. /!\*/
 {
     int     i;
     int     j;
@@ -71,7 +71,7 @@ char    **test_tetri(char **tetri)                     /* en cours  /!\ PB si le
         }
         i++;
     }
-    return (tetri);
+    return (1);
 }
 
 char    **format_tetri(char **tetri, int c)
@@ -122,7 +122,7 @@ int     get_tetri(const int fd, int nbtetris)
     i = 0;
 	while (tetris[i] != NULL)
 	{
-            if(!(tetris[i] = test_tetri(tetris[i])))
+            if(!test_tetri(tetris[i]))
                 return (0);
             tetris[i] = format_tetri(tetris[i], i);
             i++;
