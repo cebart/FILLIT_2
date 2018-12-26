@@ -41,32 +41,31 @@ int test_tetri(char **tetri)                     /* en cours  /!\ PB si le tetri
 {
     int     i;
     int     j;
-    int     bloc;
     int     cpt;
+    char    **tmp;
 
-    bloc = 0;
+    tmp = ft_2tabnew(4, 4);
+    i = 0;
+    while (i < 4)
+    {
+        strcpy(tmp[i], tetri[i]);
+        i++;
+    }
     i = 0;
     cpt = 0;
-    while ( i < 4)
+    while ( i < 4 && cpt < 3)
     {
         j = 0;
-        while (j < 4)
+        while (j < 4 && cpt < 3)
         {
-            if (tetri[i][j] == '#')
+            if (tmp[i][j] == '#')
             {
                 cpt++;
-                if (i != 0 && tetri[i-1][j] != '.')
-                    bloc++;
-                if (i != 3 && tetri[i+1][j] != '.')
-                    bloc++;
-                if (j != 3 && tetri[i][j + 1] != '.')
-                    bloc++;
-                if (j != 0 && tetri[i][j - 1] != '.')
-                    bloc++;
-                if (((cpt == 1 || cpt == 4) && bloc == 0) || ((cpt == 2 || cpt == 3) && bloc != 2))
+                if ((i != 0 && tmp[i-1][j] != '.') || (i != 3 && tmp[i+1][j] != '.') || (j != 3 && tmp[i][j + 1] != '.') || (j != 0 && tmp[i][j - 1] != '.'))
+                    tmp[i][j] = '.';
+                else
                     return (0);
             }
-            bloc = 0;
             j++;
         }
         i++;
