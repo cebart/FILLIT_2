@@ -113,13 +113,12 @@ char    **format_tetri(char **tetri, int c)
 
 int     get_tetri(const int fd, int nbtetris)
 {
-    char    ***tetris;                                                   /* tetris[nb_tetris][largeur][longueur] */
+    char    ***tetris;
     int     i;
     int     j;
     char    *line;
 
-    if (!(tetris = ft_tab2tabnew(nbtetris, 4, 4)))
-        return (0);
+    tetris = ft_tab2tabnew(nbtetris, 4, 4);
     line = ft_strnew(4);
     i = 0;
     while (tetris[i])
