@@ -1,13 +1,26 @@
 #include "fillit.h"
 
-int solve(int nbt)
+char    **compute(char **res, char ***tetris)
+{
+
+    return (res);
+}
+
+
+
+int     solve(int size, char ***tetris)
 {
     char    **res;
     int     i = 0;
 
-    res = ft_2tabfill(res, '.', nbt);
-
-
+    res = ft_2tabnew(size, size);
+    res = ft_2tabfill(res, '.', size);
+    while (!(compute(res, tetris)))
+	{
+		size++;
+		ft_2tabdel(res, size);
+		res = ft_2tabfill(res, '.', size);
+    }
 
 
 
@@ -16,7 +29,5 @@ int solve(int nbt)
         ft_putendl(res[i]);
         i++;
 	}                                           /* fin debug */
-	// ft_2tabdel(res, nbt);
-
     return (1);
 }
