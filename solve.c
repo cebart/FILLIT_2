@@ -1,5 +1,20 @@
 #include "fillit.h"
 
+int     is_free(char **res, char **tetri)  /* alterner 0-0 0-1 1-0 1-1... d'abord colle a haut-gauche */
+{
+    int i;
+    int j;
+
+    i = 0;
+    j = 0;
+    while (res[i])
+    {
+        /* ... */
+    }
+
+    return (1);
+}
+
 char    **compute(char **res, char ***tetris)
 {
     int     t;
@@ -10,6 +25,10 @@ char    **compute(char **res, char ***tetris)
     t = 0;
     l = 0;
     c = 0;
+    while (tetris[t])
+    {
+
+    }
     tmp = ft_2tabcpy(res);
 
 
