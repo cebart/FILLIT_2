@@ -41,10 +41,18 @@ char        **ft_2tabcpy(char **tab)
 {
     int     i;
     char    **tmp;
+    int     line;
+    int     col;
 
-    tmp = ft_2tabnew(4, 4);
+    line = 0;
+    col = 0;
+    while (tab[line])
+        line++;
+    while (tab[0][col])
+        col++;
+    tmp = ft_2tabnew(line, col);
     i = 0;
-    while (i < 4)
+    while (i < line)
     {
         strcpy(tmp[i], tab[i]);
         i++;
