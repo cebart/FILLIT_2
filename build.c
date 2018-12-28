@@ -51,3 +51,37 @@ char        **ft_2tabcpy(char **tab)
     }
     return (tmp);
 }
+
+char        **ft_2tabfill(char **tab, char c, int nbt)
+{
+    int     i;
+    int     j;
+    char    **tmp;
+
+    tmp = ft_2tabnew(nbt, nbt);
+    i = 0;
+    while (i < nbt)
+    {
+        j = 0;
+        while (j < nbt)
+        {
+            tmp[i][j] = c;
+            j++;
+        }
+        i++;
+    }
+    return (tmp);
+}
+
+void        ft_2tabdel(char **tab, int len)                 /* A verif */
+{
+	int     i;
+
+    i = 0;
+    while(i < len)
+    {
+        ft_strdel(&(tab[i]));
+        i++;
+    }
+    free(tab);
+}

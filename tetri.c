@@ -111,7 +111,7 @@ char    **format_tetri(char **tetri, int c)
     return (tetri);
 }
 
-int     get_tetri(const int fd, int nbtetris)
+char     ***get_tetri(const int fd, int nbtetris)
 {
     char    ***tetris;
     int     i;
@@ -149,19 +149,5 @@ int     get_tetri(const int fd, int nbtetris)
             tetris[i] = format_tetri(tetris[i], i);
             i++;
 	}
-
-    i = 0;                              /* debug */
-	while (tetris[i] != NULL)
-	{
-        j = 0;
-        while (j < 4)
-        {
-            ft_putendl(tetris[i][j]);
-            j++;
-        }
-        ft_putchar('\n');
-        i++;
-	}                                           /* fin debug */
-
-    return (1);
+    return (tetris);
 }
