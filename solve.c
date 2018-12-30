@@ -45,32 +45,29 @@ char     **is_free_and_place(char **res, char **tetri, int lig, int col)
         j = 0;
         col = 0;
     }
-
-    i = 0;                              /* debug */
-	while (res[i] != NULL)
-	{
-        ft_putendl(res[i]);
-        i++;
-        if (cpt != 4)
-            ft_putendl("KO cpt");
-	}                                   /* fin debug */
-
     if (cpt != 4)
         return (NULL);
     return (res);
 }
 
-char    **compute(char **res, char ***tetris)               /* alterner ligne puis colonne */
+char    **compute(char **res, char ***tetris, int nbtetri)               /* alterner ligne puis colonne */
 {
     int     t;
     int     i;
     int     j;
     char    **tmp;
+    char     *placed;
 
     i = 0;
     j = 0;
     t = 0;
-
+    placed = ft_strnew(nbtetri);
+    while (i < nbtetri)
+    {
+        placed[i] = '0';
+        i++;
+    }
+    i = 0;
     tmp = ft_2tabcpy(res);
     while (tmp[i][j])
     {
@@ -81,14 +78,15 @@ char    **compute(char **res, char ***tetris)               /* alterner ligne pu
             {
                 while (tetris[t])
                 {
-                    if ((tmp = is_free_and_place(tmp, tetris[t], i, j)))
+                    if (placed[t] != '1')
                     {
-                        ft_putendl("Placed");               /* debug */
-                        t++;
-                        break ;
+                        if ((tmp = is_free_and_place(tmp, tetris[t], i, j)))
+                        {
+                            placed[t] = '1';
+                            t++;
+                            break ;
+                        }
                     }
-                    else
-                        return (NULL);
                     t++;
                 }
             }
@@ -113,11 +111,13 @@ char    **compute(char **res, char ***tetris)               /* alterner ligne pu
 int     solve(int siz, char ***tetris)
 {
     char    **res;
+    int     nbtetri;
 
+    nbtetri = siz;
     res = ft_2tabnew(siz, siz);
     res = ft_2tabfill(res, '.', siz);
 
-    while (!(compute(res, tetris)))
+    while (!(res = compute(res, tetris, nbtetri)))
 	{
 		siz++;
 		ft_2tabdel(res, siz);
@@ -126,12 +126,12 @@ int     solve(int siz, char ***tetris)
     }
 
 
- /*     int i = 0
-       	while (tmp)                                  debug
+    int i = 0;
+    while (res)                                 /* debug */
 	{
-        ft_putendl(tmp[i]);
+        ft_putendl(res[i]);
         i++;
-	}                                            fin debug */
+	}                                           /* fin debug */
 
     return (1);
 }

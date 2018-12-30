@@ -17,7 +17,7 @@ char    **ft_2tabcpy(char **tab);
 char    **ft_2tabfill(char **tab, char c, int nbt);
 void    ft_2tabdel(char **tab, int len);
 int     solve(int siz, char ***tetris);
-char    **compute(char **res, char ***tetris);
+char    **compute(char **res, char ***tetris, int nbtetri);
 char    **is_free_and_place(char **res, char **tetri, int lig, int col);
 
 
