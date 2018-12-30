@@ -2,12 +2,12 @@
 
             /* in progress */
 
-char     **is_free_and_place(char **res, char **tetri, int lig, int col)     /* /!\ */
+char     **is_free_and_place(char **res, char **tetri, int lig, int col)            /* /!\ */
 {
     int i;
     int j;
     int cpt;
-
+    ft_putendl("test");
     i = 0;
     cpt = 0;
     while (tetri[i])
@@ -55,7 +55,7 @@ char    **compute(char **res, char ***tetris, int nbtetri)               /* alte
     int     t;
     int     i;
     int     j;
-    char     *placed;
+    char    *placed;
 
     i = 0;
     j = 0;
@@ -70,27 +70,29 @@ char    **compute(char **res, char ***tetris, int nbtetri)               /* alte
     while (res[i][j])
     {
         i = 0;
-        while (res[i])
+        while (res[i])                                      /* /!\ */
         {
-            if (res[i][j] == '.')
+            if (res[i][j] && res[i][j] == '.')
             {
                 while (tetris[t])
                 {
                     if (placed[t] != '1')
                     {
-                        if ((res = is_free_and_place(res, tetris[t], i, j)))
+                        if ((res = is_free_and_place(res, tetris[t], i, j)))            /* /!\ */
                         {
                             placed[t] = '1';
                             t++;
                             break ;
-                            ft_putendl("da grosse daronne ?");
                         }
                     }
                     t++;
                 }
+                ft_putendl("test1");
             }
+            ft_putendl("test2");
             i++;
         }
+        ft_putendl("test");
         j++;
     }
 
@@ -109,12 +111,10 @@ char    **compute(char **res, char ***tetris, int nbtetri)               /* alte
 	{
         ft_putendl(res[i]);
         i++;
-	}
-	                                            /* fin debug */
+	}                                    /* fin debug */
+
     return (res);
 }
-
-
 
 int     solve(int siz, char ***tetris)
 {
@@ -124,16 +124,17 @@ int     solve(int siz, char ***tetris)
     nbtetri = siz;
     res = ft_2tabnew(siz, siz);
     res = ft_2tabfill(res, '.', siz);
-
+    res = compute(res, tetris, nbtetri);                    /* debug */
     while (!(res = compute(res, tetris, nbtetri)))
 	{
+		ft_putendl("tyui");
 		siz++;
 		ft_2tabdel(res, siz);
 		res = ft_2tabnew(siz, siz);
 		res = ft_2tabfill(res, '.', siz);
     }
 
-
+ft_putendl("tt");
     int i = 0;
     while (res)                                 /* debug */
 	{
