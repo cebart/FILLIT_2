@@ -55,7 +55,6 @@ char    **compute(char **res, char ***tetris, int nbtetri)               /* alte
     int     t;
     int     i;
     int     j;
-    char    **tmp;
     char     *placed;
 
     i = 0;
@@ -68,19 +67,18 @@ char    **compute(char **res, char ***tetris, int nbtetri)               /* alte
         i++;
     }
     i = 0;
-    tmp = ft_2tabcpy(res);
-    while (tmp[i][j])
+    while (res[i][j])
     {
         i = 0;
-        while (tmp[i])
+        while (res[i])
         {
-            if (tmp[i][j] == '.')
+            if (res[i][j] == '.')
             {
                 while (tetris[t])
                 {
                     if (placed[t] != '1')
                     {
-                        if ((tmp = is_free_and_place(tmp, tetris[t], i, j)))
+                        if ((res = is_free_and_place(res, tetris[t], i, j)))
                         {
                             placed[t] = '1';
                             t++;
@@ -107,9 +105,9 @@ char    **compute(char **res, char ***tetris, int nbtetri)               /* alte
     }
 
     i = 0;                              /* debug */
-	while (tmp[i] != NULL)
+	while (res[i] != NULL)
 	{
-        ft_putendl(tmp[i]);
+        ft_putendl(res[i]);
         i++;
 	}
 	                                            /* fin debug */
