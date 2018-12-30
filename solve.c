@@ -2,7 +2,7 @@
 
             /* in progress */
 
-char     **is_free_and_place(char **res, char **tetri, int lig, int col)
+char     **is_free_and_place(char **res, char **tetri, int lig, int col)     /* /!\ */
 {
     int i;
     int j;
@@ -85,6 +85,7 @@ char    **compute(char **res, char ***tetris, int nbtetri)               /* alte
                             placed[t] = '1';
                             t++;
                             break ;
+                            ft_putendl("da grosse daronne ?");
                         }
                     }
                     t++;
@@ -95,6 +96,15 @@ char    **compute(char **res, char ***tetris, int nbtetri)               /* alte
         j++;
     }
 
+    ft_putendl(placed);                 /* debug */
+
+    i = 0;
+    while (i < nbtetri)
+    {
+        if (placed[i] != '1')
+            return (0);
+        i++;
+    }
 
     i = 0;                              /* debug */
 	while (tmp[i] != NULL)
