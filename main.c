@@ -27,10 +27,10 @@ int     	main(int argc, char **argv)
         tetris = get_tetri(fd, (nbtetris) / 5);
     }
     else
-        ft_putendl("KO check");
+        ft_putendl("error");
 
 
- /*   int i = 0;                               debug
+  /*  int i = 0;                               debug
     int j;
 	while (tetris[i] != NULL)
 	{

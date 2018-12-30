@@ -6,8 +6,10 @@ char     **is_free_and_place(char **res, char **tetri, int lig, int col)
 {
     int i;
     int j;
+    int cpt;
 
     i = 0;
+    cpt = 0;
     while (tetri[i])
     {
         j = 0;
@@ -30,16 +32,33 @@ char     **is_free_and_place(char **res, char **tetri, int lig, int col)
             if (tetri[i][j] != '.' && res[lig][col] != '.')
                 return (NULL);
             else if (tetri[i][j] != '.')
+            {
                 res[lig][col] = tetri[i][j];
-            col++;
+                cpt++;
+            }
+            if (tetri[i][j] != '.')
+                col++;
             j++;
         }
         lig++;
         i++;
+        j = 0;
+        col = 0;
     }
+
+    i = 0;                              /* debug */
+	while (res[i] != NULL)
+	{
+        ft_putendl(res[i]);
+        i++;
+        if (cpt != 4)
+            ft_putendl("KO cpt");
+	}                                   /* fin debug */
+
+    if (cpt != 4)
+        return (NULL);
     return (res);
 }
-
 
 char    **compute(char **res, char ***tetris)               /* alterner ligne puis colonne */
 {
@@ -51,6 +70,7 @@ char    **compute(char **res, char ***tetris)               /* alterner ligne pu
     i = 0;
     j = 0;
     t = 0;
+
     tmp = ft_2tabcpy(res);
     while (tmp[i][j])
     {
@@ -63,11 +83,12 @@ char    **compute(char **res, char ***tetris)               /* alterner ligne pu
                 {
                     if ((tmp = is_free_and_place(tmp, tetris[t], i, j)))
                     {
-                        ft_putendl("Placed");                           /* debug */
+                        ft_putendl("Placed");               /* debug */
+                        t++;
                         break ;
                     }
                     else
-                        ft_putendl("KO");               /* debug a remplacer par return (NULL) */
+                        return (NULL);
                     t++;
                 }
             }
@@ -89,21 +110,20 @@ char    **compute(char **res, char ***tetris)               /* alterner ligne pu
 
 
 
-int     solve(int size, char ***tetris)
+int     solve(int siz, char ***tetris)
 {
     char    **res;
 
-    res = ft_2tabnew(size, size);
-    res = ft_2tabfill(res, '.', size);
-    compute(res, tetris);
+    res = ft_2tabnew(siz, siz);
+    res = ft_2tabfill(res, '.', siz);
 
- /*   while (!(compute(res, tetris)))
+    while (!(compute(res, tetris)))
 	{
-		size++;
-		ft_2tabdel(res, size);
-		res = ft_2tabnew(size, size);
-		res = ft_2tabfill(res, '.', size);
-    } */
+		siz++;
+		ft_2tabdel(res, siz);
+		res = ft_2tabnew(siz, siz);
+		res = ft_2tabfill(res, '.', siz);
+    }
 
 
  /*     int i = 0
