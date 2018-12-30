@@ -79,7 +79,7 @@ char        **ft_2tabfill(char **tab, char c, int nbt)
     return (tab);
 }
 
-void        ft_2tabdel(char **tab, int len)                 /* A verif */
+void        ft_2tabdel(char **tab, int len)
 {
 	int     i;
 
