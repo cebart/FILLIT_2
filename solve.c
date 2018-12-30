@@ -50,7 +50,7 @@ char     **is_free_and_place(char **res, char **tetri, int lig, int col)        
     return (res);
 }
 
-char    **compute(char **res, char ***tetris, int nbtetri)               /* alterner ligne puis colonne */
+char    **compute(char **res, char ***tetris, int nbtetri)
 {
     int     t;
     int     i;
