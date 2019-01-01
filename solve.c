@@ -39,7 +39,7 @@ int     is_free_and_place(char **res, char **tetri, int lig, int col)           
     return (1);
 }
 
-char    **compute(char **res, char ***tetris, int nbtetri)
+int     compute(char **res, char ***tetris, int nbtetri)
 {
     int     t;
     int     i;
@@ -80,11 +80,11 @@ char    **compute(char **res, char ***tetris, int nbtetri)
     while (i < nbtetri)
     {
         if (placed[i] != '1')
-            return (NULL);
+            return (0);
         i++;
     }
     ft_putendl("test");    /* debug */
-    return (res);
+    return (1);
 }
 
 int     solve(int siz, char ***tetris)
@@ -96,9 +96,8 @@ int     solve(int siz, char ***tetris)
     siz = 4;
     res = ft_2tabnew(siz, siz);
     res = ft_2tabfill(res, '.', siz);
-    while (!(res = compute(res, tetris, nbtetri)))
+    while (!compute(res, tetris, nbtetri))
 	{
-		ft_putendl("tyui");
 		siz++;
 		ft_2tabdel(res, siz);
 		res = ft_2tabnew(siz, siz);
