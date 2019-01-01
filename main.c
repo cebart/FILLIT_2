@@ -15,7 +15,7 @@ int     	main(int argc, char **argv)                             /* 32 lignes */
 	else if (argc > 2)
 	{
 		 write(2, "Too many arguments.", 19);
-			 return (0));
+			 return (0);
 	}
 	fd = open(argv[1], O_RDONLY);
 	if (check_file(fd, &nbtetris))
