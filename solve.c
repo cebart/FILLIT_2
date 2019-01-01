@@ -7,7 +7,8 @@ char     **is_free_and_place(char **res, char **tetri, int lig, int col)        
     int i;
     int j;
     int cpt;
-    ft_putendl("test");
+
+    ft_putendl("testfp");
     i = 0;
     cpt = 0;
     while (tetri[i])
@@ -23,16 +24,20 @@ char     **is_free_and_place(char **res, char **tetri, int lig, int col)        
             break ;
         i++;
     }
-    if (!tetri[i])
-        i--;
+    ft_putendl("testfp2");                                          /* ici ??? */
+ /*   if (!tetri[i])
+        i--;            */
     while (res[lig] && tetri[i])
     {
+        ft_putendl("testfp3");
         while (res[lig][col] && tetri[i][j])
         {
+            ft_putendl("testfp4");
             if (tetri[i][j] != '.' && res[lig][col] != '.')
-                return (NULL);
+                    return (NULL);
             else if (tetri[i][j] != '.')
             {
+                ft_putendl("testfp5");
                 res[lig][col] = tetri[i][j];
                 cpt++;
             }
@@ -40,11 +45,13 @@ char     **is_free_and_place(char **res, char **tetri, int lig, int col)        
                 col++;
             j++;
         }
+        ft_putendl("testfp6");
         lig++;
         i++;
         j = 0;
         col = 0;
     }
+    ft_putendl("testfpfin");
     if (cpt != 4)
         return (NULL);
     return (res);
@@ -76,14 +83,11 @@ char    **compute(char **res, char ***tetris, int nbtetri)
             {
                 while (tetris[t])
                 {
-                    if (placed[t] != '1')
+                    if (placed[t] != '1' && (res = is_free_and_place(res, tetris[t], i, j)))  /* /!\ */
                     {
-                        if ((res = is_free_and_place(res, tetris[t], i, j)))            /* /!\ */
-                        {
                             placed[t] = '1';
                             t++;
                             break ;
-                        }
                     }
                     t++;
                 }
@@ -95,14 +99,11 @@ char    **compute(char **res, char ***tetris, int nbtetri)
         ft_putendl("test");
         j++;
     }
-
-    ft_putendl(placed);                 /* debug */
-
     i = 0;
     while (i < nbtetri)
     {
         if (placed[i] != '1')
-            return (0);
+            return (NULL);
         i++;
     }
 
