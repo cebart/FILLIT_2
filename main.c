@@ -45,7 +45,9 @@ int     	main(int argc, char **argv)
 	}                                             fin debug */
 
 
-    if(!(solve((nbtetris / 5), tetris)));                       /* if = debug */
+    if(!(solve((nbtetris / 5), tetris)))                      /* if = debug */
         ft_putendl("KO_solve");
+    else
+        ft_putendl("OK_solve");
 	return (0);
 }
