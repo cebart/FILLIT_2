@@ -1,8 +1,8 @@
 #include "fillit.h"
 
-            /* in progress */
+            /* in progress / pb de destruction de blocs qd faux ?*/
 
-int     is_free_and_place(char **res, char **tetri, int lig, int col)            /* /!\ */
+int     is_free_and_place(char **res, char **tetri, int lig, int col)
 {
     int i;
     int j;
@@ -20,7 +20,7 @@ int     is_free_and_place(char **res, char **tetri, int lig, int col)           
         while (res[lig][col] && tetri[i][j])
         {
             if (tetri[i][j] != '.' && res[lig][col] != '.')
-                    return (0);
+                return (0);
             else if (tetri[i][j] != '.')
             {
                 res[lig][col] = tetri[i][j];
@@ -35,7 +35,8 @@ int     is_free_and_place(char **res, char **tetri, int lig, int col)           
     }
     if (cpt != 4)
         return (0);
-    res = ft_2tabcpy(tab);
+    else
+        res = ft_2tabcpy(tab);
     return (1);
 }
 
@@ -51,10 +52,7 @@ int     compute(char **res, char ***tetris, int nbtetri)
     t = 0;
     placed = ft_strnew(nbtetri);
     while (i < nbtetri)
-    {
-        placed[i] = '0';
-        i++;
-    }
+        placed[i++] = '0';
     i = 0;
 	while (res[i] != '\0')
 	{
@@ -64,7 +62,7 @@ int     compute(char **res, char ***tetris, int nbtetri)
             t = 0;
             while (tetris[t])
             {
-                if (placed[t] != '1' && is_free_and_place(res, tetris[t], i, j))  /* /!\ */
+                if (placed[t] != '1' && is_free_and_place(res, tetris[t], i, j))
                 {
                     placed[t] = '1';
                     t++;
@@ -79,11 +77,9 @@ int     compute(char **res, char ***tetris, int nbtetri)
     i = 0;
     while (i < nbtetri)
     {
-        if (placed[i] != '1')
+        if (placed[i++] != '1')
             return (0);
-        i++;
     }
-    ft_putendl("test");    /* debug */
     return (1);
 }
 
@@ -93,18 +89,20 @@ int     solve(int siz, char ***tetris)
     int     nbtetri;
 
     nbtetri = siz;
-    siz = 4;
     res = ft_2tabnew(siz, siz);
     res = ft_2tabfill(res, '.', siz);
-    while (!compute(res, tetris, nbtetri))
+    while (!compute(res, tetris, nbtetri))                          /* si ! reset de res */
 	{
 		siz++;
 		ft_2tabdel(res, siz);
 		res = ft_2tabnew(siz, siz);
 		res = ft_2tabfill(res, '.', siz);
     }
-
-    ft_putendl("tt");                           /* debug */
-
+                            int k = 0;                              /* debug */
+                            while (res[k] != NULL)
+                            {
+                                ft_putendl(res[k]);
+                                k++;
+                            }                                   /* fin degub */
     return (1);
 }
