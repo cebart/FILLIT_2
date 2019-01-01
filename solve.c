@@ -14,16 +14,16 @@ int     is_free_and_place(char **res, char **tetri, int lig, int col)
     tmp = col;
     i = 0;
     cpt = 0;
-    while (res[lig] && tetri[i])
+    while (tab[lig] && tetri[i])
     {
         j = 0;
-        while (res[lig][col] && tetri[i][j])
+        while (tab[lig][col] && tetri[i][j])
         {
-            if (tetri[i][j] != '.' && res[lig][col] != '.')
+            if (tetri[i][j] != '.' && tab[lig][col] != '.')
                 return (0);
             else if (tetri[i][j] != '.')
             {
-                res[lig][col] = tetri[i][j];
+                tab[lig][col] = tetri[i][j];
                 cpt++;
             }
             col++;
@@ -35,8 +35,12 @@ int     is_free_and_place(char **res, char **tetri, int lig, int col)
     }
     if (cpt != 4)
         return (0);
-    else
-        res = ft_2tabcpy(tab);
+    i = 0;
+    while (res[i])
+    {
+        strcpy(res[i], tab[i]);
+        i++;
+    }
     return (1);
 }
 
