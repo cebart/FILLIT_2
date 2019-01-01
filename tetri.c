@@ -31,7 +31,7 @@ int     tetri_gauche(char **tetri)                          /* 26 lignes */
     return (1);
 }
 
-int     tetri_droite(char **tetri)                              /* 26 lignes && check si toujours utile*/
+int     tetri_droite(char **tetri)                              /* 26 lignes */
 {
     int     i;
     int     j;
@@ -87,7 +87,7 @@ int     test_tetri(char **tetri)
     return (1);
 }
 
-char    **format_tetri(char **tetri, int c)
+char    **format_tetri(char **tetri, int c)                             /* a mettre dans un fichier format.c avec une fonction pour coller les tetris en haut a gauche */
 {
     int     i;
     int     j;
