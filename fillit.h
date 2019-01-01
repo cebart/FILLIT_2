@@ -9,6 +9,8 @@
 
 int     check_file(const int fd, int *nbtetris);
 char    ***get_tetri(const int fd, int nbtetris);
+int     tetri_gauche(char **tetri);
+int     tetri_droite(char **tetri);
 char    **ft_2tabnew(int nbl, int nbc);
 char    ***ft_tab2tabnew(int nbtab, int nbl, int nbc);
 int     test_tetri(char **tetri);

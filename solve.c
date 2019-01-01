@@ -1,7 +1,5 @@
 #include "fillit.h"
 
-            /* in progress / pb de destruction de blocs qd faux ?*/
-
 int     is_free_and_place(char **res, char **tetri, int lig, int col)
 {
     int i;
@@ -69,7 +67,6 @@ int     compute(char **res, char ***tetris, int nbtetri)
                 if (placed[t] != '1' && is_free_and_place(res, tetris[t], i, j))
                 {
                     placed[t] = '1';
-                    t++;
                     break ;
                 }
                 t++;
@@ -91,7 +88,9 @@ int     solve(int siz, char ***tetris)
 {
     char    **res;
     int     nbtetri;
+    int     i;
 
+    i = 0;
     nbtetri = siz;
     res = ft_2tabnew(siz, siz);
     res = ft_2tabfill(res, '.', siz);
@@ -102,11 +101,7 @@ int     solve(int siz, char ***tetris)
 		res = ft_2tabnew(siz, siz);
 		res = ft_2tabfill(res, '.', siz);
     }
-                            int k = 0;                              /* debug */
-                            while (res[k] != NULL)
-                            {
-                                ft_putendl(res[k]);
-                                k++;
-                            }                                   /* fin degub */
+    while (res[i])
+        ft_putendl(res[i++]);
     return (1);
 }

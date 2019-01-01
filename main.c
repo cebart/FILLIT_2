@@ -1,7 +1,5 @@
 #include "fillit.h"
 
-
-
 int     	main(int argc, char **argv)
 {
 	int     fd;
@@ -24,30 +22,17 @@ int     	main(int argc, char **argv)
     {
         close(fd);
         fd = open(argv[1], O_RDONLY);
-        tetris = get_tetri(fd, (nbtetris) / 5);
+        if (!(tetris = get_tetri(fd, (nbtetris) / 5)))
+        {
+            ft_putendl_fd("error", 2);
+            return (0);
+        }
     }
     else
-        ft_putendl("error");
-
-
-  /*  int i = 0;                               debug
-    int j;
-	while (tetris[i] != NULL)
-	{
-        j = 0;
-        while (j < 4)
         {
-            ft_putendl(tetris[i][j]);
-            j++;
+            ft_putendl_fd("error", 2);
+            return (0);
         }
-        ft_putchar('\n');
-        i++;
-	}                                             fin debug */
-
-
-    if(!(solve((nbtetris / 5), tetris)))                      /* if = debug */
-        ft_putendl("KO_solve");
-    else
-        ft_putendl("OK_solve");
+    solve((nbtetris / 5), tetris);
 	return (0);
 }
