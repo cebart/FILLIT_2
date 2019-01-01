@@ -1,6 +1,6 @@
 #include "fillit.h"
 
-int     tetri_gauche(char **tetri)
+int     tetri_gauche(char **tetri)                          /* 26 lignes */
 {
     int     i;
     int     j;
@@ -31,7 +31,7 @@ int     tetri_gauche(char **tetri)
     return (1);
 }
 
-int     tetri_droite(char **tetri)
+int     tetri_droite(char **tetri)                              /* 26 lignes && check si toujours utile*/
 {
     int     i;
     int     j;
@@ -111,7 +111,7 @@ char    **format_tetri(char **tetri, int c)
     return (tetri);
 }
 
-char     ***get_tetri(const int fd, int nbtetris)
+char     ***get_tetri(const int fd, int nbtetris)           /* 33 lignes */
 {
     char    ***tetris;
     int     i;
@@ -134,18 +134,15 @@ char     ***get_tetri(const int fd, int nbtetris)
         get_next_line(fd, &line);
     }
     i = 0;
-	while (tetris[i] != NULL)
+	while (tetris[i])
 	{
             if (test_tetri(tetris[i]))
             {
                 if(!tetri_gauche(tetris[i]))
                     return (0);
             }
-            else
-            {
-                if(!tetri_droite(tetris[i]))
+            else if(!tetri_droite(tetris[i]))
                     return (0);
-            }
             tetris[i] = format_tetri(tetris[i], i);
             i++;
 	}

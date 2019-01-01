@@ -1,6 +1,6 @@
 #include "fillit.h"
 
-int     is_free_and_place(char **res, char **tetri, int lig, int col)
+int     is_free_and_place(char **res, char **tetri, int lig, int col)           /* 37 lignes */
 {
     int i;
     int j;
@@ -42,7 +42,7 @@ int     is_free_and_place(char **res, char **tetri, int lig, int col)
     return (1);
 }
 
-int     compute(char **res, char ***tetris, int nbtetri)
+int     compute(char **res, char ***tetris, int nbtetri)                /* 37 lignes */
 {
     int     t;
     int     i;

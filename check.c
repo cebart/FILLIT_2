@@ -1,6 +1,6 @@
 #include "fillit.h"
 
-int     check_file(const int fd, int *nbtetris)
+int     check_file(const int fd, int *nbtetris)             /* 55 lignes */
 {
     int     bool_line;                          /* 1 pour line non vide sinon 0 -> test si 2 saut de ligne */
     int     cpt;                                /* compteur pour verif si 4 ligne avant ligne vide ( ni plus ni moins ) */

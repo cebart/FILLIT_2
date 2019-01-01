@@ -1,6 +1,6 @@
 #include "fillit.h"
 
-int     	main(int argc, char **argv)
+int     	main(int argc, char **argv)                             /* 32 lignes */
 {
 	int     fd;
     int     nbtetris;
@@ -10,12 +10,12 @@ int     	main(int argc, char **argv)
 	if (argc == 1)
 	{
 		write(2, "fillit: missing file operand.", 29);
-			return (1);
+			return (0);
 	}
 	else if (argc > 2)
 	{
 		 write(2, "Too many arguments.", 19);
-			 return (1);
+			 return (0));
 	}
 	fd = open(argv[1], O_RDONLY);
 	if (check_file(fd, &nbtetris))
@@ -29,10 +29,10 @@ int     	main(int argc, char **argv)
         }
     }
     else
-        {
+    {
             ft_putendl_fd("error", 2);
             return (0);
-        }
+    }
     solve((nbtetris / 5), tetris);
 	return (0);
 }
