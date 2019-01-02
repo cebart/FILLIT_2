@@ -120,7 +120,7 @@ int     solve(int siz, char ***tetris)
     siz = 2;
 	while (siz * siz < (nbtetri * 4))
 		siz++;
-    res = ft_2tabnew(4, 4);
+    res = ft_2tabnew(siz, siz);
     res = ft_2tabfill(res, '.', siz);
     while (!compute(res, tetris, nbtetri, 0, siz))                          /* si ! reset de res */
 	{
