@@ -88,6 +88,12 @@ int     compute(char **res, char ***tetris, int nbtetri, int t, int siz)        
         i++;
     }
     i = 0;
+        int k = 0;
+    while (res[k])
+    {
+        ft_putendl(res[k++]);
+    }
+    ft_putchar('\n');
     while (placed[i] == '1' && i < nbtetri)
     {
         if (i == nbtetri - 1)
@@ -122,10 +128,9 @@ int     solve(int siz, char ***tetris)
 		siz++;
     res = ft_2tabnew(siz, siz);
     res = ft_2tabfill(res, '.', siz);
-    while (!compute(res, tetris, nbtetri, 0, siz))                          /* si ! reset de res */
+    while (!compute(res, tetris, nbtetri, 0, siz))
 	{
 		siz++;
-		ft_2tabdel(res, siz);
 		res = ft_2tabnew(siz, siz);
 		res = ft_2tabfill(res, '.', siz);
     }
