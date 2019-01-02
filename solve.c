@@ -88,7 +88,7 @@ int     compute(char **res, char ***tetris, int nbtetri)                /* 37 li
         if (placed[i++] != '1')
             return (0);
     }
-    return (1);
+    return (1);                                   /*  relancer la fonction avec t + 1 pour commencer par un autre tetri  */
 }
 
 int     solve(int siz, char ***tetris)
