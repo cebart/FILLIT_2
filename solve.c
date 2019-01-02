@@ -50,7 +50,7 @@ int     is_free_and_place(char **res, char **tetri, int lig, int col)
     return (1);
 }
 
-int     compute(char **res, char ***tetris, int nbtetri, int t, int siz)                /* >37 lignes */
+int     compute(char **res, char ***tetris, int nbtetri, int t, int siz)                /* 55 lignes */
 {
     int     i;
     int     j;
