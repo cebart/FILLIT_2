@@ -88,33 +88,25 @@ int     compute(char **res, char ***tetris, int nbtetri, int t, int siz)        
         i++;
     }
     i = 0;
-    ft_putendl(placed);
-    int k = 0;
-    while (res[k])
+    while (placed[i] == '1' && i < nbtetri)
     {
-        ft_putendl(res[k++]);
-    }
-    ft_putchar('\n');
-    ft_putnbr(nbtetri);
-    ft_putchar('\n');
-    ft_putchar('\n');
-    while (i < nbtetri)
-    {
-        if (placed[i++] != '1')
+        if (i == nbtetri - 1)
         {
-            if (tmp < nbtetri)
-            {
-                ft_putendl("test");
-                ft_2tabdel(res, siz);
-                res = ft_2tabnew(siz, siz);
-                res = ft_2tabfill(res, '.', siz);
-                return (compute(res, tetris, nbtetri, tmp, siz));                           /*  relancer la fonction avec t + 1 pour commencer par un autre tetri  */
-            }
-            else
-                return (0);
+            i = 0;
+            while (res[i])
+                ft_putendl(res[i++]);
+            return (1);
         }
+        i++;
     }
-    return (1);
+    if (tmp < nbtetri)
+    {
+        ft_2tabdel(res, siz);
+        res = ft_2tabnew(siz, siz);
+        res = ft_2tabfill(res, '.', siz);
+        return (compute(res, tetris, nbtetri, tmp, siz));                           /*  relancer la fonction avec t + 1 pour commencer par un autre tetri  */
+    }
+    return (0);
 }
 
 int     solve(int siz, char ***tetris)
@@ -137,7 +129,5 @@ int     solve(int siz, char ***tetris)
 		res = ft_2tabnew(siz, siz);
 		res = ft_2tabfill(res, '.', siz);
     }
-    while (res[i])
-        ft_putendl(res[i++]);
     return (1);
 }
