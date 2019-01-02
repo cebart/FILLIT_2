@@ -19,8 +19,8 @@ int     tetri_gauche(char **tetri)                          /* 26 lignes */
             {
                 cpt++;
                 if ((i != 0 && tmp[i-1][j] != '.') || (i != 3 && tmp[i+1][j] != '.') ||
-                    (j != 3 && tmp[i][j + 1] != '.') || (j != 0 && tmp[i][j - 1] != '.'))
-                    tmp[i][j] = '.';
+                        (j != 3 && tmp[i][j + 1] != '.') || (j != 0 && tmp[i][j - 1] != '.') || (cpt == 3 && tmp[i+1][j-1] != '.'))
+                            tmp[i][j] = '.';
                 else
                     return (0);
             }
@@ -133,7 +133,7 @@ char     ***get_tetri(const int fd, int nbtetris)           /* 33 lignes */
         i++;
         get_next_line(fd, &line);
     }
-    i = 0;
+    i = 0;                                                          /* format tetris en haut a gauche ici */
 	while (tetris[i])
 	{
             if (test_tetri(tetris[i]))
