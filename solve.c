@@ -88,12 +88,6 @@ int     compute(char **res, char ***tetris, int nbtetri, int t, int siz)        
         i++;
     }
     i = 0;
-        int k = 0;
-    while (res[k])
-    {
-        ft_putendl(res[k++]);
-    }
-    ft_putchar('\n');
     while (placed[i] == '1' && i < nbtetri)
     {
         if (i == nbtetri - 1)
