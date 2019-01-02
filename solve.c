@@ -49,16 +49,18 @@ int     is_free_and_place(char **res, char **tetri, int lig, int col)
     return (1);
 }
 
-int     compute(char **res, char ***tetris, int nbtetri)                /* 37 lignes */
+int     compute(char **res, char ***tetris, int nbtetri, int t)                /* 37 lignes */
 {
-    int     t;
     int     i;
     int     j;
     char    *placed;
+    int     cpt;
+    int     tmp;
 
     i = 0;
     j = 0;
-    t = 0;
+    cpt = 0;
+    tmp = t + 1;
     placed = ft_strnew(nbtetri);
     while (i < nbtetri)
         placed[i++] = '0';
@@ -68,12 +70,14 @@ int     compute(char **res, char ***tetris, int nbtetri)                /* 37 li
 		j = 0;
 		while (res[i][j] != '\0')
 		{
-            t = 0;
+            if (cpt)
+                t = 0;
             while (tetris[t])
             {
                 if (placed[t] != '1' && is_free_and_place(res, tetris[t], i, j))
                 {
                     placed[t] = '1';
+                    cpt++;
                     break ;
                 }
                 t++;
@@ -86,7 +90,12 @@ int     compute(char **res, char ***tetris, int nbtetri)                /* 37 li
     while (i < nbtetri)
     {
         if (placed[i++] != '1')
-            return (0);
+        {
+            if (tmp <= nbtetri)
+                return (compute(res, tetris, nbtetri, tmp));
+            else
+                return (0);
+        }
     }
     return (1);                                   /*  relancer la fonction avec t + 1 pour commencer par un autre tetri  */
 }
@@ -102,9 +111,9 @@ int     solve(int siz, char ***tetris)
     siz = 2;
 	while (siz * siz < (nbtetri * 4))
 		siz++;
-    res = ft_2tabnew(siz, siz);
+    res = ft_2tabnew(4, 4);
     res = ft_2tabfill(res, '.', siz);
-    while (!compute(res, tetris, nbtetri))                          /* si ! reset de res */
+    while (!compute(res, tetris, nbtetri, 0))                          /* si ! reset de res */
 	{
 		siz++;
 		ft_2tabdel(res, siz);
