@@ -1,17 +1,11 @@
 #include "fillit.h"
 
-int     is_free_and_place(char **res, char **tetri, int lig, int col)           /* 37 lignes */
+int     is_free(char **tab, int lig, int col, char **tetri, int *cpt)
 {
     int i;
     int j;
-    int cpt;
-    int tmp;
-    char **tab;
 
-    tab = ft_2tabcpy(res);
-    tmp = col;
     i = 0;
-    cpt = 0;
     while (tab[lig] && tetri[i])
     {
         j = 0;
@@ -22,15 +16,28 @@ int     is_free_and_place(char **res, char **tetri, int lig, int col)           
             else if (tetri[i][j] != '.')
             {
                 tab[lig][col] = tetri[i][j];
-                cpt++;
+                (*cpt)++;
             }
             col++;
             j++;
         }
         lig++;
         i++;
-        col = tmp;
+        col = col - j;
     }
+    return (1);
+}
+
+int     is_free_and_place(char **res, char **tetri, int lig, int col)
+{
+    int i;
+    int cpt;
+    char **tab;
+
+    tab = ft_2tabcpy(res);
+    cpt = 0;
+    if (!is_free(tab, lig, col, tetri, &cpt))
+        return (0);
     if (cpt != 4)
         return (0);
     i = 0;
@@ -92,6 +99,9 @@ int     solve(int siz, char ***tetris)
 
     i = 0;
     nbtetri = siz;
+    siz = 2;
+	while (siz * siz < (nbtetri * 4))
+		siz++;
     res = ft_2tabnew(siz, siz);
     res = ft_2tabfill(res, '.', siz);
     while (!compute(res, tetris, nbtetri))                          /* si ! reset de res */

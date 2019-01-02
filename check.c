@@ -1,6 +1,6 @@
 #include "fillit.h"
 
-int     full_line(int *bool_line, int *blocs, int *cpt, char **line)
+int     full_line(int *bool_line, int *blocs, int *cpt, char *line)
 {
     int i;
 
@@ -9,13 +9,13 @@ int     full_line(int *bool_line, int *blocs, int *cpt, char **line)
     (*cpt)++;
     if ((*cpt) > 4)
         return (0);
-    if (ft_strlen((*line)) != 4)
+    if (ft_strlen(line) != 4)
         return (0);
     while (i < 4)
     {
-        if ((*line)[i] != '.' && (*line)[i] != '#')
+        if (line[i] != '.' && line[i] != '#')
             return (0);
-        if ((*line)[i] == '#')
+        if (line[i] == '#')
             (*blocs)++;
         if ((*blocs) > 4)
             return (0);
@@ -53,7 +53,7 @@ int     check_file(const int fd, int *nbtetris)
     {
         if (ft_strlen(line))
         {
-            if (!full_line(&bool_line, &blocs, &cpt, &line))
+            if (!full_line(&bool_line, &blocs, &cpt, line))
                 return (0);
         }
         else

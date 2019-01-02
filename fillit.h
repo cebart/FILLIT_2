@@ -8,6 +8,8 @@
 #include <stdio.h>
 
 int     check_file(const int fd, int *nbtetris);
+int     no_line(int *bool_line, int *blocs, int *cpt);
+int     full_line(int *bool_line, int *blocs, int *cpt, char *line);
 char    ***get_tetri(const int fd, int nbtetris);
 int     tetri_gauche(char **tetri);
 int     tetri_droite(char **tetri);
@@ -21,6 +23,7 @@ void    ft_2tabdel(char **tab, int len);
 int     solve(int siz, char ***tetris);
 int     compute(char **res, char ***tetris, int nbtetri);
 int     is_free_and_place(char **res, char **tetri, int lig, int col);
+int     is_free(char **tab, int lig, int col, char **tetri, int *cpt);
 
 
 #endif
