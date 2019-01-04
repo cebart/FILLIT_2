@@ -87,30 +87,6 @@ int     test_tetri(char **tetri)
     return (1);
 }
 
-char    **format_tetri(char **tetri, int c)                             /* a mettre dans un fichier format.c avec une fonction pour coller les tetris en haut a gauche */
-{
-    int     i;
-    int     j;
-    char    bloc;
-
-    bloc = 'A';
-    i = 0;
-    if (c > 25)
-        return (NULL);
-    while ( i < 4)
-    {
-        j = 0;
-        while (j < 4)
-        {
-            if (tetri[i][j] == '#')
-                tetri[i][j] = bloc + c;
-            j++;
-        }
-        i++;
-    }
-    return (tetri);
-}
-
 char     ***get_tetri(const int fd, int nbtetris)           /* 33 lignes */
 {
     char    ***tetris;
