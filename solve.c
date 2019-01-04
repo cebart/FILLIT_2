@@ -70,7 +70,7 @@ void    compute_2(char **res, char ***tetris, int t, char *placed)          /* 2
                 if (placed[t] != '1' && is_free_and_place(res, tetris[t], i, j))
                 {
                     placed[t] = '1';
-                    cpt++;
+                    cpt = 1;
                     break ;
                 }
                 t++;
