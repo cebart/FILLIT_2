@@ -1,6 +1,6 @@
 #include "fillit.h"
 
-int     is_free(char **tab, int lig, int col, char **tetri, int *cpt)
+int     is_free(char **tab, int lig, int col, char **tetri, int *cpt)           /* a mettre dans un fichier free.c */
 {
     int i;
     int j;
@@ -25,11 +25,10 @@ int     is_free(char **tab, int lig, int col, char **tetri, int *cpt)
         i++;
         col = col - j;
     }
-
     return (1);
 }
 
-int     is_free_and_place(char **res, char **tetri, int lig, int col)
+int     is_free_and_place(char **res, char **tetri, int lig, int col)               /* a mettre dans un fichier free.c */
 {
     int i;
     int cpt;
@@ -50,26 +49,19 @@ int     is_free_and_place(char **res, char **tetri, int lig, int col)
     return (1);
 }
 
-int     compute(char **res, char ***tetris, int nbtetri, int t, int siz)                /* 55 lignes */
+void    compute_2(char **res, char ***tetris, int t, char *placed)          /* 28 lignes */
 {
-    int     i;
-    int     j;
-    char    *placed;
-    int     cpt;
-    int     tmp;
+    int i;
+    int j;
+    int cpt;
 
     i = 0;
     j = 0;
     cpt = 0;
-    tmp = t + 1;
-    placed = ft_strnew(nbtetri);
-    while (i < nbtetri)
-        placed[i++] = '0';
-    i = 0;
-	while (res[i] != '\0')
+    while (res[i] != '\0')
 	{
-		j = 0;
-		while (res[i][j] != '\0')
+        j = 0;
+        while (res[i][j] != '\0')
 		{
             if (cpt)
                 t = 0;
@@ -87,6 +79,12 @@ int     compute(char **res, char ***tetris, int nbtetri, int t, int siz)        
         }
         i++;
     }
+}
+
+int     test_compute(char *placed, int nbtetri, char **res)
+{
+    int i;
+
     i = 0;
     while (placed[i] == '1' && i < nbtetri)
     {
@@ -99,6 +97,23 @@ int     compute(char **res, char ***tetris, int nbtetri, int t, int siz)        
         }
         i++;
     }
+    return (0);
+}
+
+int     compute(char **res, char ***tetris, int nbtetri, int t, int siz)
+{
+    int     i;
+    char    *placed;
+    int     tmp;
+
+    i = 0;
+    tmp = t + 1;
+    placed = ft_strnew(nbtetri);
+    while (i < nbtetri)
+        placed[i++] = '0';
+    compute_2(res, tetris, t, placed);
+    if (test_compute(placed, nbtetri, res))
+        return (1);
     if (tmp < nbtetri)
     {
         ft_2tabdel(res, siz);
@@ -113,9 +128,7 @@ int     solve(int siz, char ***tetris)
 {
     char    **res;
     int     nbtetri;
-    int     i;
 
-    i = 0;
     nbtetri = siz;
     siz = 2;
 	while (siz * siz < (nbtetri * 4))

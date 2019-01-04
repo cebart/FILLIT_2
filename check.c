@@ -61,9 +61,7 @@ int     check_file(const int fd, int *nbtetris)
                 return (0);
         (*nbtetris)++;
     }
-    if ( blocs != 4)                                             /* test si le dernier tetri a bien 4 blocs */
-                return (0);
-    if (!bool_line)                                             /* test si saut de ligne juste avant la fin de fichier */
+    if ( blocs != 4 || !bool_line)                                             /* test si le dernier tetri a bien 4 blocs || /!\ test si saut de ligne juste avant la fin de fichier */
         return (0);
     return (1);
 }

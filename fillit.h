@@ -28,5 +28,7 @@ void    align_line(char **tetri);
 void    align_col(char **tetri);
 void    test_line(char **tetri);
 void    test_col(char **tetri);
+void    compute_2(char **res, char ***tetris, int t, char *placed) ;
+int     test_compute(char *placed, int nbtetri, char **res);
 
 #endif
