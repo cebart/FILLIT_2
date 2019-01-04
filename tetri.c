@@ -87,7 +87,27 @@ int     test_tetri(char **tetri)
     return (1);
 }
 
-char     ***get_tetri(const int fd, int nbtetris)           /* 33 lignes */
+int     valid_and_format(char ***tetris)
+{
+    int i;
+
+    i = 0;
+	while (tetris[i])
+	{
+            if (test_tetri(tetris[i]))
+            {
+                if(!tetri_gauche(tetris[i]))
+                    return (0);
+            }
+            else if(!tetri_droite(tetris[i]))
+                    return (0);
+            tetris[i] = format_tetri(tetris[i], i);
+            i++;
+	}
+	return (1);
+}
+
+char     ***get_tetri(const int fd, int nbtetris)
 {
     char    ***tetris;
     int     i;
@@ -109,18 +129,7 @@ char     ***get_tetri(const int fd, int nbtetris)           /* 33 lignes */
         i++;
         get_next_line(fd, &line);
     }
-    i = 0;                                                          /* format tetris en haut a gauche ici */
-	while (tetris[i])
-	{
-            if (test_tetri(tetris[i]))
-            {
-                if(!tetri_gauche(tetris[i]))
-                    return (0);
-            }
-            else if(!tetri_droite(tetris[i]))
-                    return (0);
-            tetris[i] = format_tetri(tetris[i], i);
-            i++;
-	}
+    if (!valid_and_format(tetris))
+        return (0);
     return (tetris);
 }

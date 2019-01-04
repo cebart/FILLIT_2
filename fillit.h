@@ -30,5 +30,6 @@ void    test_line(char **tetri);
 void    test_col(char **tetri);
 void    compute_2(char **res, char ***tetris, int t, char *placed) ;
 int     test_compute(char *placed, int nbtetri, char **res);
+int     valid_and_format(char ***tetris);
 
 #endif
