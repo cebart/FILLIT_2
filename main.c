@@ -40,6 +40,6 @@ int     	main(int argc, char **argv)
             ft_putendl_fd("error", 2);
             return (0);
     }
-    solve((nbtetris / 5), tetris);
+    solve(2, tetris);
 	return (0);
 }
