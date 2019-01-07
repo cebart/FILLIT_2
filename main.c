@@ -1,6 +1,6 @@
 #include "fillit.h"
 
-int    test_arg(int argc, char **argv)
+int    test_arg(int argc)
 {
     if (argc == 1)
 	{
@@ -22,7 +22,7 @@ int     	main(int argc, char **argv)
     char    ***tetris;
 
     nbtetris = 1;
-    if(!test_arg(argc, argv))
+    if(!test_arg(argc))
         return (0);
     fd = open(argv[1], O_RDONLY);
 	if (check_file(fd, &nbtetris))

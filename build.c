@@ -14,7 +14,7 @@ char        ***ft_tab2tabnew(int nbtab, int nbl, int nbc)
         tab[i] = ft_2tabnew(nbl, nbc);
 		i++;
 	}
-	tab[i] = '\0';
+	tab[i] = NULL;
 	return (tab);
 }
 
@@ -33,7 +33,7 @@ char        **ft_2tabnew(int nbl, int nbc)
         tab[i] = (ft_strnew(nbc + 1));
         i++;
     }
-    tab[i] = '\0';
+    tab[i] = NULL;
 	return (tab);
 }
 
